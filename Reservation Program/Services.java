@@ -151,7 +151,7 @@ public class Services extends Main{
             reservation_product[index] = tablet;
             reservation_price[index] = price;
 
-                System.out.println();
+            System.out.println();
             Thread.sleep(1500);
             System.out.println("- Type \"Yes\" if you want to reserve again in iPads");
             System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
