@@ -22,7 +22,6 @@ public class Main {
             Scanner user = new Scanner(System.in);
             System.out.print("Apple Username: ");
             String username = user.nextLine();
-
             acc.setUsername(username);
 
             Scanner pass = new Scanner(System.in);
@@ -51,20 +50,25 @@ public class Main {
                 System.out.println("Welcome apple user " + acc.getUsername() + "!");
                 login = false;
             } else {
-                System.out.println("Invalid input. Please provide correct information\n");
+                System.out.println("Wrong username or password. Please provide correct information\n");
                 login = true;
             }
         }
         while (running) {
             Thread.sleep(2000);
             System.out.println();
-            System.out.println("|==============================================================|");
-            System.out.println("|                                                              |");
-            System.out.println("|     _W E L C O M E  T O  C Y B E R -S  S O L U T I O N S_    |");
-            System.out.println("|                      Where we offer                          |");
-            System.out.println("|             original and affordable Apple products           |");
-            System.out.println("|                                                              |");
-            System.out.println("|==============================================================|");
+            System.out.println("||==============================================================||          ");
+            System.out.println("||                 * Authorized Apple Reseller *                ||          ");
+            System.out.println("||--------------------------------------------------------------||");
+            System.out.println();
+            System.out.println();
+            System.out.println("||     _W E L C O M E  T O  C Y B E R -S  M A R K E T_          ||");
+            System.out.println("||                                                              ||");
+            System.out.println("||            Where we offer latest Apple products              ||");
+            System.out.println("||             and outstanding customer service as well.        ||");
+            System.out.println("||                                                              ||");
+            System.out.println("||                                        \"Think Different\"   ||");
+            System.out.println("||==============================================================||");
             System.out.println();
             Thread.sleep(1500);
             System.out.println("Book your apple necessities now!!!");
@@ -80,9 +84,6 @@ public class Main {
             System.out.println(">>>Press \"3\" to Cancel reservation");
             System.out.println(">>>Press \"4\" to Pay");
             System.out.println(">>>Press \"0\" to Exit the program");
-
-//            InputStreamReader r = new InputStreamReader(System.in);
-//            BufferedReader br = new BufferedReader(r);
 
             System.out.println();
             System.out.print(">: ");
@@ -102,11 +103,11 @@ public class Main {
                     System.out.print("Category: ");
                     cat = u.nextLine();
 
-                    if (cat.equalsIgnoreCase("Smartphones")) {
+                    if (cat.equalsIgnoreCase("iPhones")) {
                         Services.Smartphone();
-                    } else if (cat.equalsIgnoreCase("Tablets")) {
+                    } else if (cat.equalsIgnoreCase("iPads")) {
                         Services.Tablet();
-                    } else if (cat.equalsIgnoreCase("Laptops")) {
+                    } else if (cat.equalsIgnoreCase("Macs")) {
                         Services.Laptop();
                     } else {
                         System.out.println("Please input correct apple product category.");
@@ -120,7 +121,7 @@ public class Main {
             } else if (user.equals("3")) {
                     acc.Cancellation();
             } else if (user.equals("4")) {
-                    System.out.println();
+                    acc.Pay();
             } else {
                     System.out.println("Please input correct correct number from 1-4 and 0 if you want to exit the program");
             }

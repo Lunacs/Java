@@ -11,6 +11,6 @@ package JavaProjects;
 public class practice {
     public static void main(String[] args) {
         System.out.println ("Hello World");
-   		system.out.printIn.nextLine;
+   		System.out.println("");
     }
 }

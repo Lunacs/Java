@@ -2,7 +2,7 @@ package JavaProjects;
 
 import java.util.Scanner;
 
-public class game {
+class game {
     public static void main(String[] args) {
         //Input the player name
         Scanner input = new Scanner(System.in);
