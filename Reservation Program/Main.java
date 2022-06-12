@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 public class Main {
 
+    static Scanner inputs = new Scanner(System.in);
     static Services s = new Services();
     static Main main = new Main();
     static Account acc = new Account();
@@ -19,6 +20,11 @@ public class Main {
         boolean login = true;
 
         while (login) {
+            System.out.println();
+            System.out.println("       *===========Apple ID Login===========*       ");
+            Thread.sleep(2000);
+
+            System.out.println();
             Scanner user = new Scanner(System.in);
             System.out.print("Apple Username: ");
             String username = user.nextLine();
@@ -87,7 +93,7 @@ public class Main {
 
             System.out.println();
             System.out.print(">: ");
-            String user = Services.input.nextLine();
+            String user = inputs.nextLine();
 
 
             Thread.sleep(2000);
@@ -118,10 +124,15 @@ public class Main {
                 }
             }  else if (user.equals("2")) {
                     Account.checkInfo();
+                    System.out.println("Press enter to go back in the dashboard");
+                    inputs.nextLine();
+
             } else if (user.equals("3")) {
                     acc.Cancellation();
+
             } else if (user.equals("4")) {
                     acc.Pay();
+
             } else {
                     System.out.println("Please input correct correct number from 1-4 and 0 if you want to exit the program");
             }

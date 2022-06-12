@@ -48,12 +48,15 @@ public class Account extends Main{
 
                 for (int i = 0; i < Services.reservation_product.length; i++) {
                     Services.formattedPrice = Services.dF.format(Services.reservation_price[i]);
-                    System.out.println(Services.reservation_prod_quanti[i] + " " + Services.reservation_product[i] + "\n Price: P" + Services.formattedPrice);
+                    System.out.println(Services.reservation_prod_quanti[i] + "pc/s " + " " + Services.reservation_product[i] +
+                            "\n Price: P" + Services.formattedPrice);
+                    System.out.println();
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
+
     }
     public void Cancellation() throws InterruptedException {
 
@@ -62,7 +65,7 @@ public class Account extends Main{
                 Arrays.stream(Services.reservation_price).allMatch(Objects::isNull);
 
         if (isNull) {
-            System.out.println("You haven't yet reserve a apple product/s.");
+            System.out.println("You haven't yet reserve an apple product/s.");
             Thread.sleep(2000);
 
         } else {
@@ -71,11 +74,14 @@ public class Account extends Main{
             String c = Services.input.nextLine();
 
             if (c.equalsIgnoreCase("Yes")) {
-                Arrays.fill(Services.reservation_price, 0);
-                for (String i : Services.reservation_product) {
-                    System.out.println("You have now " + i + "reservation");
-                    break;
-                }
+//                Arrays.fill(Services.reservation_price, 0);
+//                for (String i : Services.reservation_product) {
+//                    System.out.println("You have now " + i + "reservation");
+//                    break;
+                System.out.println("After clearing array");
+                Services.reservation_product = new String[Services.reservation_product.length];
+                System.out.println("You have now " + Services.reservation_product[0] + "reserve." );
+
                 System.out.println("Your reservation has been cancelled");
 
             } else if (c.equalsIgnoreCase("No")) {

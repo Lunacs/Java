@@ -40,7 +40,7 @@ public class Services extends Main{
                 boolean phones = false;
                 for (int i = 0; i < Products.getSmartphones().length; i++) {
                     if (phone.equalsIgnoreCase(Products.getSmartphones()[i])) {
-                        phones = false;
+                        phones = true;
                         price = Products.getPhonePrices()[i];
                         formattedPrice = dF.format(price);
                         System.out.println(phone + "     " + "Price: P" + formattedPrice);
@@ -87,35 +87,39 @@ public class Services extends Main{
                 reservation_product[index] = phone;
                 reservation_price[index] = timesQuantity;
 
-                if (index < 9) {
-                    System.out.println();
-                    Thread.sleep(3000);
-                    System.out.println("- Type \"Yes\" if you want to reserve again in iPhone");
-                    System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
-                    System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
-                    System.out.print("Please pick of command you want to do in the above options: ");
+                if (quantity) {
+                    if (index < 10) {
+                        System.out.println();
+                        Thread.sleep(3000);
+                        System.out.println("- Type \"Yes\" if you want to reserve again in iPhone");
+                        System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
+                        System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
+                        System.out.print("Please pick of command you want to do in the above options: ");
 
-                    String reserve = input.nextLine();
-                    if (reserve.equalsIgnoreCase("Yes")) {
-                        index++;
-                        System.out.println(index);
-                        continue;
-                    } else if (reserve.equalsIgnoreCase("1")) {
-                        index++;
-                        //runSmartphone = false;
-                        runProducts = true;
-                        return;
-                    } else if (reserve.equalsIgnoreCase("Dashboard")) {
-                        index++;
-                        //runSmartphone = false;
-                        returnDashboard = true;
-                        isDashboard = true;
-                        return;
+                        String reserve = input.nextLine();
+                        if (reserve.equalsIgnoreCase("Yes")) {
+                            index++;
+                            System.out.println(index);
+                            continue;
+                        } else if (reserve.equalsIgnoreCase("1")) {
+                            index++;
+                            //runSmartphone = false;
+                            runProducts = true;
+                            return;
+                        } else if (reserve.equalsIgnoreCase("Dashboard")) {
+                            index++;
+                            //runSmartphone = false;
+                            returnDashboard = true;
+                            isDashboard = true;
+                            return;
+                        } else {
+                            System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
+                        }
                     } else {
-                        System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
+                        System.out.println("The limit for reserving an apple product is 10 per account");
                     }
-                } else{
-                    System.out.println("The limit for reserving an apple product is 10 per account");
+                }else {
+                    quantity = false;
                 }
             }
     }
@@ -175,35 +179,39 @@ public class Services extends Main{
             reservation_product[index] = tablet;
             reservation_price[index] = timesQuantity;
 
-            System.out.println();
-            Thread.sleep(3000);
-            System.out.println("- Type \"Yes\" if you want to reserve again in iPads");
-            System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
-            System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
+            if (index < 10) {
+                System.out.println();
+                Thread.sleep(3000);
+                System.out.println("- Type \"Yes\" if you want to reserve again in iPads");
+                System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
+                System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
 
-            System.out.print("Please pick of command you want to do in the above options: ");
-            String reserve1 = input.nextLine();
+                System.out.print("Please pick of command you want to do in the above options: ");
+                String reserve1 = input.nextLine();
 
-            if (reserve1.equalsIgnoreCase("Yes")) {
-                index++;
-                System.out.println(index);
-                continue;
-            } else if (reserve1.equalsIgnoreCase("1")) {
-                index++;
-                //runTablet = false;
-                runProducts = true;
-                return;
-            } else if (reserve1.equalsIgnoreCase("Dashboard")) {
-                index++;
-                //System.out.println("aigoo");
-                //runSmartphone = false;
-                //runProducts = false;
-                returnDashboard = true;
-                isDashboard = true;
-                //System.out.println(isDashboard);
-                return;
-            } else {
-                System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
+                if (reserve1.equalsIgnoreCase("Yes")) {
+                    index++;
+                    System.out.println(index);
+                    continue;
+                } else if (reserve1.equalsIgnoreCase("1")) {
+                    index++;
+                    //runTablet = false;
+                    runProducts = true;
+                    return;
+                } else if (reserve1.equalsIgnoreCase("Dashboard")) {
+                    index++;
+                    //System.out.println("aigoo");
+                    //runSmartphone = false;
+                    //runProducts = false;
+                    returnDashboard = true;
+                    isDashboard = true;
+                    //System.out.println(isDashboard);
+                    return;
+                } else {
+                    System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
+                }
+            }else{
+                System.out.println("The limit for reserving apple products is 10 per valid account.");
             }
         }
     }
@@ -264,32 +272,36 @@ public class Services extends Main{
             reservation_product[index] = laptop;
             reservation_price[index] = timesQuantity;
 
-            System.out.println();
-            Thread.sleep(3000);
-            System.out.println("- Type \"Yes\" if you want to reserve again in iPads");
-            System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
-            System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
+            if (index < 10) {
+                System.out.println();
+                Thread.sleep(3000);
+                System.out.println("- Type \"Yes\" if you want to reserve again in iPads");
+                System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
+                System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
 
-            System.out.print("Please pick of command you want to do in the above options: ");
-            String reserve2 = input.nextLine();
-            if (reserve2.equalsIgnoreCase("Yes")) {
-                index++;
-                System.out.println(index);
-                continue;
+                System.out.print("Please pick of command you want to do in the above options: ");
+                String reserve2 = input.nextLine();
+                if (reserve2.equalsIgnoreCase("Yes")) {
+                    index++;
+                    System.out.println(index);
+                    continue;
 
-            } else if (reserve2.equalsIgnoreCase("1")) {
-                index++;
-                //runLaptop = false;
-                runProducts = true;
-                return;
-            } else if (reserve2.equalsIgnoreCase("Dashboard")) {
-                index++;
-                //runLaptop = false;
-                returnDashboard = true;
-                isDashboard = true;
-                return;
-            } else {
-                System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
+                } else if (reserve2.equalsIgnoreCase("1")) {
+                    index++;
+                    //runLaptop = false;
+                    runProducts = true;
+                    return;
+                } else if (reserve2.equalsIgnoreCase("Dashboard")) {
+                    index++;
+                    //runLaptop = false;
+                    returnDashboard = true;
+                    isDashboard = true;
+                    return;
+                } else {
+                    System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
+                }
+            }else {
+                System.out.println("The limit for reserving apple products is 10 per account.");
             }
         }
     }
