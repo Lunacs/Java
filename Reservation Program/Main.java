@@ -63,18 +63,18 @@ public class Main {
         while (running) {
             Thread.sleep(2000);
             System.out.println();
-            System.out.println("||==============================================================||          ");
-            System.out.println("||                 * Authorized Apple Reseller *                ||          ");
-            System.out.println("||--------------------------------------------------------------||");
+            System.out.println("   ||==============================================================||          ");
+            System.out.println("   ||                 * Authorized Apple Reseller *                ||          ");
+            System.out.println("   ||--------------------------------------------------------------||");
             System.out.println();
-            System.out.println();
-            System.out.println("||     _W E L C O M E  T O  C Y B E R -S  M A R K E T_          ||");
-            System.out.println("||                                                              ||");
-            System.out.println("||            Where we offer latest Apple products              ||");
-            System.out.println("||             and outstanding customer service as well.        ||");
-            System.out.println("||                                                              ||");
-            System.out.println("||                                        \"Think Different\"   ||");
-            System.out.println("||==============================================================||");
+            System.out.println("||===================================================================||");
+            System.out.println("||          _W E L C O M E  T O  C Y B E R -S  M A R K E T_          ||");
+            System.out.println("||                                                                   ||");
+            System.out.println("||            Where we offer latest Apple products                   ||");
+            System.out.println("||             and outstanding customer service as well.             ||");
+            System.out.println("||                                                                   ||");
+            System.out.println("||                                        \"Think Different\"        ||");
+            System.out.println("||===================================================================||");
             System.out.println();
             Thread.sleep(1500);
             System.out.println("Book your apple necessities now!!!");
@@ -102,7 +102,7 @@ public class Main {
                     System.out.println();
                     System.out.println("-----Apple Product Categories-----");
                     for (String p : Products.getCategories()) {
-                        System.out.println(p);
+                        System.out.println("|| " + p + "");
                     }
                     Scanner u = new Scanner(System.in);
                     System.out.println();
@@ -124,11 +124,16 @@ public class Main {
                 }
             }  else if (user.equals("2")) {
                     Account.checkInfo();
+
                     System.out.println("Press enter to go back in the dashboard");
                     inputs.nextLine();
 
+
             } else if (user.equals("3")) {
                     acc.Cancellation();
+
+                    System.out.println("Press enter to go back in the dashboard");
+                    inputs.nextLine();
 
             } else if (user.equals("4")) {
                     acc.Pay();

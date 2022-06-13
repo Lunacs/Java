@@ -21,108 +21,106 @@ public class Services extends Main{
     static DateTimeFormatter formatdTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
     static void Smartphone() throws InterruptedException, InputMismatchException {
 
+        System.out.println();
+
+        boolean runSmartphone = true;
+        while (runSmartphone) {
+
+            Thread.sleep(1500);
+            System.out.println("------------Latest iPhones---------------");
+            for (String Category0 : Products.getSmartphones()) {
+                System.out.println("|| " + Category0);
+            }
             System.out.println();
 
-            boolean runSmartphone = true;
-            while (runSmartphone) {
+            System.out.print("Pick a smartphone you want to reserve: ");
+            String phone = input.nextLine();
+            products.setSmartphone(phone);
 
-                Thread.sleep(1500);
-                System.out.println("------------Latest iPhones---------------");
-                for (String Category0 : Products.getSmartphones()) {
-                    System.out.println("|| " + Category0);
+            boolean phones = false;
+            for (int i = 0; i < Products.getSmartphones().length; i++) {
+                if (phone.equalsIgnoreCase(Products.getSmartphones()[i])) {
+                    phones = false;
+                    price = Products.getPhonePrices()[i];
+                    formattedPrice = dF.format(price);
+                    System.out.println(phone + "     " + "Price: P" + formattedPrice);
+                    break;
+                } else {
+                    phones = true;
                 }
+            }
+
+            if (phones) {
                 System.out.println();
-
-                System.out.print("Pick a smartphone you want to reserve: ");
-                String phone = input.nextLine();
-                products.setSmartphone(phone);
-
-                boolean phones = false;
-                for (int i = 0; i < Products.getSmartphones().length; i++) {
-                    if (phone.equalsIgnoreCase(Products.getSmartphones()[i])) {
-                        phones = true;
-                        price = Products.getPhonePrices()[i];
-                        formattedPrice = dF.format(price);
-                        System.out.println(phone + "     " + "Price: P" + formattedPrice);
-                        break;
-                    } else {
-                        phones = false;
-                    }
-                }
-
-                if (phones) {
-                    System.out.println("Please enter correct name of iPhone.");
-                    continue;
-                }
+                System.out.println("Please enter correct name of iPhone.");
                 System.out.println();
+                continue;
+            }
+            System.out.println();
+
+            int timesQuantity = 0;
+            while (quantity) {
+                try {
+                    System.out.print("How many of " + phone + " you want to reserve? ");
+                    products.setQproducts(Integer.parseInt(input.nextLine()));
 
 
-                int timesQuantity = 0;
-                while (quantity) {
-                    try {
-                        System.out.print("How many of " + phone + " you want to reserve? ");
-                        products.setQproducts(Integer.parseInt(input.nextLine()));
+                    quantity = true;
+                    timesQuantity = products.getQproducts() * price;
+                    formattedPrice = dF.format(timesQuantity);
 
 
-                        quantity = true;
-                        timesQuantity = products.getQproducts() * price;
-                        formattedPrice = dF.format(timesQuantity);
-
-
-                        System.out.println();
-                        Thread.sleep(2000);
-                        System.out.println("You reserve " + products.getQproducts() + " pc/s of " + phone + " with a total of " + "P" + formattedPrice);
-                        break;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid Input. Please input integer number");
-                        quantity = false;
-                    }
-                }
-                LocalDateTime dTime = LocalDateTime.now();
-                DateTimeFormatter formatdTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
-                formattedDate = dTime.format(formatdTime);
-
-                System.out.println(index);
-                reservation_prod_quanti[index] = products.getQproducts();
-                reservation_product[index] = phone;
-                reservation_price[index] = timesQuantity;
-
-                if (quantity) {
-                    if (index < 10) {
-                        System.out.println();
-                        Thread.sleep(3000);
-                        System.out.println("- Type \"Yes\" if you want to reserve again in iPhone");
-                        System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
-                        System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
-                        System.out.print("Please pick of command you want to do in the above options: ");
-
-                        String reserve = input.nextLine();
-                        if (reserve.equalsIgnoreCase("Yes")) {
-                            index++;
-                            System.out.println(index);
-                            continue;
-                        } else if (reserve.equalsIgnoreCase("1")) {
-                            index++;
-                            //runSmartphone = false;
-                            runProducts = true;
-                            return;
-                        } else if (reserve.equalsIgnoreCase("Dashboard")) {
-                            index++;
-                            //runSmartphone = false;
-                            returnDashboard = true;
-                            isDashboard = true;
-                            return;
-                        } else {
-                            System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
-                        }
-                    } else {
-                        System.out.println("The limit for reserving an apple product is 10 per account");
-                    }
-                }else {
+                    System.out.println();
+                    Thread.sleep(2000);
+                    System.out.println("You reserve " + products.getQproducts() + " pc/s of " + phone + " with a total of " + "P" + formattedPrice);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid Input. Please input integer number");
                     quantity = false;
                 }
             }
+            LocalDateTime dTime = LocalDateTime.now();
+            DateTimeFormatter formatdTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
+            formattedDate = dTime.format(formatdTime);
+
+            System.out.println(index);
+            reservation_prod_quanti[index] = products.getQproducts();
+            reservation_product[index] = phone;
+            reservation_price[index] = timesQuantity;
+
+            if (products.getQproducts() < 10) {
+                System.out.println();
+                Thread.sleep(3000);
+                System.out.println("- Type \"Yes\" if you want to reserve again in iPhone");
+                System.out.println("- Type \"1\" if you want to reserve in other categories of apple products");
+                System.out.println("- Or type \"dashboard\" to return to the main dashboard\n");
+                System.out.print("Please pick of command you want to do in the above options: ");
+
+                String reserve = input.nextLine();
+                if (reserve.equalsIgnoreCase("Yes")) {
+                    index++;
+                    System.out.println(index);
+                    continue;
+                } else if (reserve.equalsIgnoreCase("1")) {
+                    index++;
+                    //runSmartphone = false;
+                    runProducts = true;
+                    return;
+                } else if (reserve.equalsIgnoreCase("Dashboard")) {
+                    index++;
+                    //runSmartphone = false;
+                    returnDashboard = true;
+                    isDashboard = true;
+                    return;
+                } else {
+                    System.out.println("Please answer the question Yes, 1 or dashboard depending on what you want");
+                }
+            } else {
+                System.out.println("The limit for reserving an apple product is 10 per account");
+            }
+        }
     }
+
 
     static void Tablet() throws InterruptedException{
         boolean runTablet = true;
@@ -147,7 +145,7 @@ public class Services extends Main{
                     System.out.println(tablet + "     " + "Price: P" + formattedPrice);
                     break;
                 } else {
-                    tablets = false;
+                    tablets = true;
                 }
             }
             if (tablets) {
@@ -179,7 +177,7 @@ public class Services extends Main{
             reservation_product[index] = tablet;
             reservation_price[index] = timesQuantity;
 
-            if (index < 10) {
+            if (products.getQproducts() < 10) {
                 System.out.println();
                 Thread.sleep(3000);
                 System.out.println("- Type \"Yes\" if you want to reserve again in iPads");
@@ -238,7 +236,7 @@ public class Services extends Main{
                     System.out.println(laptop + "     " + "Price: P" + formattedPrice);
                     break;
                 } else {
-                    laptops = false;
+                    laptops = true;
                 }
             }
             if (laptops) {
@@ -272,7 +270,7 @@ public class Services extends Main{
             reservation_product[index] = laptop;
             reservation_price[index] = timesQuantity;
 
-            if (index < 10) {
+            if (products.getQproducts() < 10) {
                 System.out.println();
                 Thread.sleep(3000);
                 System.out.println("- Type \"Yes\" if you want to reserve again in iPads");

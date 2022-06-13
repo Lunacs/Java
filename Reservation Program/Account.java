@@ -31,7 +31,8 @@ public class Account extends Main{
         System.out.println();
 
         boolean isNull = Arrays.stream(Services.reservation_product).allMatch(Objects::isNull) &&
-                Arrays.stream(Services.reservation_price).allMatch(Objects::isNull);
+                Arrays.stream(Services.reservation_price).allMatch(Objects::isNull) &&
+                Arrays.stream(Services.reservation_prod_quanti).allMatch(Objects::isNull);
         if (isNull) {
             System.out.println("You haven't yet reserve a apple product/s.");
             Thread.sleep(2000);
@@ -70,50 +71,106 @@ public class Account extends Main{
 
         } else {
             System.out.println();
-            System.out.print("Do you want to cancel your reserve? ");
+            System.out.print("Do you want to cancel your reserve? Yes\\No:  ");
             String c = Services.input.nextLine();
 
-            if (c.equalsIgnoreCase("Yes")) {
-//                Arrays.fill(Services.reservation_price, 0);
-//                for (String i : Services.reservation_product) {
-//                    System.out.println("You have now " + i + "reservation");
-//                    break;
-                System.out.println("After clearing array");
-                Services.reservation_product = new String[Services.reservation_product.length];
-                System.out.println("You have now " + Services.reservation_product[0] + "reserve." );
+                if (c.equalsIgnoreCase("Yes")) {
 
-                System.out.println("Your reservation has been cancelled");
+                    Services.reservation_product = new String[Services.reservation_product.length];
+                    Services.reservation_prod_quanti = new int[Services.reservation_prod_quanti.length];
+                    Services.reservation_price = new int[Services.reservation_price.length];
 
-            } else if (c.equalsIgnoreCase("No")) {
-                System.out.println("Your reserve iPhone products are: ");
+                    if (Services.reservation_product[0] == null ) {
+                        Services.reservation_product[0] = "0";
 
-            } else {
-                System.out.println("Please input correct answer to the question");
-                System.out.println("If you want to cancel your reserve products type \"Yes\".");
-                System.out.println("Else; press \"No\" if you don't want to cancel your reserve products.");
-            }
+                        if(Services.reservation_prod_quanti[0] == 0) {
+                            Services.reservation_prod_quanti[0] = Integer.parseInt("0");
+
+                            if (Services.reservation_price[0] == 0) {
+                                Services.reservation_price[0] = Integer.parseInt("0");
+
+
+                                Thread.sleep(2000);
+                                System.out.println();
+                                System.out.println("You have now " + Services.reservation_product[0] + " reserve.");
+
+                                System.out.println();
+                                System.out.println("Your reservation has been cancelled.");
+                                System.out.println();
+
+
+                            }
+                        }
+                    }
+
+                } else if (c.equalsIgnoreCase("No")) {
+                    System.out.println("Your reserve iPhone products are: ");
+
+                } else {
+                    System.out.println("Please input correct answer to the question");
+                    System.out.println("If you want to cancel your reserve products type \"Yes\".");
+                    System.out.println("Else; press \"No\" if you don't want to cancel your reserve products.");
+                }
         }
     }
 
     public void Pay() throws InterruptedException{
         Thread.sleep(1500);
 
-        System.out.println("Do you want to pay in cash or online? ");
-        String CO = Services.input.nextLine();
-
-        if ((CO.equalsIgnoreCase("Cash"))){
-            System.out.println();
-            System.out.println("Do you want now to Place Order? Y\"N ");
-            String cash = Services.input.nextLine();
-
-            if(cash.equalsIgnoreCase("Y")){
-                Thread.sleep(3000);
-                System.out.println("The payment method on this transaction is Cash on Delivery.");
-            }
-        } else if (CO.equalsIgnoreCase("Online")) {
-            System.out.println();
-        }else {
-            System.out.println("Invalid Input.");
+        System.out.println("            <==========Reserved Apple Product(s)==========>            ");
+        Thread.sleep(1500);
+        for (int i = 0; i < Services.reservation_product.length; i++) {
+            Services.formattedPrice = Services.dF.format(Services.reservation_price[i]);
+            System.out.println(Services.reservation_prod_quanti[i] + "pc/s " + " " + Services.reservation_product[i] +
+                    "\n Price: P" + Services.formattedPrice);
         }
+            System.out.println();
+            Thread.sleep(2000);
+
+            boolean paying = true;
+            while (paying) {
+                System.out.println("Do you want to pay in cash or online? ");
+                String CO = Services.input.nextLine();
+
+                if ((CO.equalsIgnoreCase("Cash"))) {
+                    System.out.println();
+                    System.out.println("Do you want now to Place Order? Y\"N ");
+                    String cash = Services.input.nextLine();
+
+                    int sum = 0;
+                    if (cash.equalsIgnoreCase("Y")) {
+                        Thread.sleep(1500);
+                        System.out.println("The payment method on this transaction is Cash on Delivery.");
+                        Thread.sleep(2000);
+                        System.out.println("Processing reservation...");
+                        Thread.sleep(4500);
+
+                        for (int x = 0; x < Services.reservation_price[x]; x++) {
+                            sum += Services.reservation_price[x];
+                            Services.formattedPrice = Services.dF.format(sum);
+                        }
+                        Thread.sleep(2000);
+                        System.out.println("The reservation has processed.");
+                        Thread.sleep(2000);
+                        System.out.println("Please prepare an exact amount of " + "P" + Services.formattedPrice + "." +
+                                "Photo proof of delivery is required");
+                        Thread.sleep(2000);
+                        System.out.println("Thank you for reserving and buying an apple product/s to our store. \nWe hope you can reserve again to us in the future");
+                        Thread.sleep(1500);
+                        System.out.println("Thanks and Be Safe!");
+
+                    } else if (cash.equalsIgnoreCase("N")) {
+                        running = true;
+                    } else {
+                        System.out.println("Please answer the question \"Y\" for Yes and \"N\" for No. ");
+                    }
+                } else if (CO.equalsIgnoreCase("Online")) {
+                    Thread.sleep(2000);
+                    System.out.println("Unfortunately the online payment method is currently unavailable.");
+                    paying = false;
+                } else {
+                    System.out.println("Invalid Input.");
+                }
+            }
     }
 }
