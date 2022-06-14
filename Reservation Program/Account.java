@@ -37,8 +37,9 @@ public class Account extends Main{
             Thread.sleep(2000);
         } else {
             boolean checking = true;
-            while (checking) {
-                    if (Services.reservation_product == null){
+            while (checking){
+
+                    if (Services.reservation_product == null || Services.reservation_product[0].equals("0")){
                         System.out.println("You haven't yet reserve a apple product/s.");
                         checking = false;
                         break;
@@ -55,9 +56,11 @@ public class Account extends Main{
                     for (int i = 0; i < Services.reservation_product.length; i++) {
                         Services.formattedPrice = Services.dF.format(Services.reservation_price[i]);
                         System.out.println(Services.reservation_prod_quanti[i] + "pc/s " + " " + Services.reservation_product[i] +
-                                "\n Price: P" + Services.formattedPrice);
+                                "\nPrice: P" + Services.formattedPrice);
                         System.out.println();
                     }
+                    checking = false;
+                    break;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -99,7 +102,10 @@ public class Account extends Main{
 
                                 //Thread.sleep(2000);
                     for (String v : Services.reservation_product){
-                        System.out.println(v);
+                        while (v != null){
+                            System.out.println(v);
+                            break;
+                        }
                     }
                     System.out.println("After clearing an array");
                     Arrays.fill(Services.reservation_product , null);
