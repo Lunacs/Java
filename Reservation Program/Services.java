@@ -28,9 +28,12 @@ public class Services extends Main{
 
             Thread.sleep(1500);
             System.out.println("------------Latest iPhones---------------");
+            System.out.println();
+            System.out.println("========================");
             for (String Category0 : Products.getSmartphones()) {
-                System.out.println("|| " + Category0);
+                System.out.println("||   " + Category0);
             }
+            System.out.println("========================");
             System.out.println();
 
             System.out.print("Pick a smartphone you want to reserve: ");
@@ -170,7 +173,15 @@ public class Services extends Main{
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid data type. Please input integer number");
                     quantity = false;
+                }catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("Your trying to reserve " + products.getQproducts() + " which is above the reserve limit.");
+                    System.out.println();
+                    quantity = false;
                 }
+//                finally {
+//                    System.out.println("Thank you for reserving " + products.getQproducts() + reservation_product[0] + " to us. :)");
+//                    Thread.sleep(2000);
+//                }
             }
             System.out.println(index);
             reservation_prod_quanti[index] = products.getQproducts();

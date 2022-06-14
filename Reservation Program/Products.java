@@ -20,8 +20,8 @@ public class Products {
                 "iPhone 11 Pro",
                 "iPhone 11 Pro Max",
                 "iPhone SE(2nd gen)",
-                "iPhone 12 mini",//
-                "iPhone 12 ",
+                "iPhone 12",//
+                "iPhone 12 mini",
                 "iPhone 12 Pro",
                 "iPhone 12 Pro Max",
                 "iPhone 13",
@@ -31,9 +31,8 @@ public class Products {
                 "iPhone SE(3rd gen)"};
 
         private static final int[] iPhonePrices = {19000, 22500, 8450, 19468, 21990, 21270, 36990, 40888,
-                32500, 30200, 32000, 31990, 33590, 40950, 32990, 35990,
-                42990, 48990, 55990, 41450, 43450,62000, 70000, 25900};
-
+                32500, 30200, 32000, 31990, 33590, 40950, 32990, 42990,
+                35990, 48990, 55990, 41450, 43450,62000, 70000, 25900};
         private static final String[] iPad= {"iPad",
                 "iPad mini",
                 "iPad Air",

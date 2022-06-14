@@ -30,31 +30,38 @@ public class Account extends Main{
     public static void checkInfo() throws InterruptedException {
         System.out.println();
 
-        boolean isNull = Arrays.stream(Services.reservation_product).allMatch(Objects::isNull) &&
-                Arrays.stream(Services.reservation_price).allMatch(Objects::isNull) &&
-                Arrays.stream(Services.reservation_prod_quanti).allMatch(Objects::isNull);
+        boolean isNull = Arrays.stream(Services.reservation_product).allMatch(Objects::isNull);
         if (isNull) {
             System.out.println("You haven't yet reserve a apple product/s.");
+            running = false;
             Thread.sleep(2000);
-            //running = false;
         } else {
-            Services.formattedDate = Services.dTime.format(Services.formatdTime);
-            System.out.println("Reservation date and time: " + Services.formattedDate);
-            System.out.println("===============Reserve Products===============");
+            boolean checking = true;
+            while (checking) {
+                    if (Services.reservation_product == null){
+                        System.out.println("You haven't yet reserve a apple product/s.");
+                        checking = false;
+                        break;
+                    }
+                Services.formattedDate = Services.dTime.format(Services.formatdTime);
+                System.out.println("Reservation date and time: " + Services.formattedDate);
+                System.out.println("===============Reserve Products===============");
 
-            try {
-                Services.reservation_product = Arrays.stream(Services.reservation_product)
-                        .filter(s -> (s != null && s.length() > 0))
-                        .toArray(String[]::new);
+                try {
+                    Services.reservation_product = Arrays.stream(Services.reservation_product)
+                            .filter(s -> (s != null && s.length() > 0))
+                            .toArray(String[]::new);
 
-                for (int i = 0; i < Services.reservation_product.length; i++) {
-                    Services.formattedPrice = Services.dF.format(Services.reservation_price[i]);
-                    System.out.println(Services.reservation_prod_quanti[i] + "pc/s " + " " + Services.reservation_product[i] +
-                            "\n Price: P" + Services.formattedPrice);
-                    System.out.println();
+                    for (int i = 0; i < Services.reservation_product.length; i++) {
+                        Services.formattedPrice = Services.dF.format(Services.reservation_price[i]);
+                        System.out.println(Services.reservation_prod_quanti[i] + "pc/s " + " " + Services.reservation_product[i] +
+                                "\n Price: P" + Services.formattedPrice);
+                        System.out.println();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }catch (Exception e){
-                e.printStackTrace();
+
             }
         }
 
@@ -76,21 +83,32 @@ public class Account extends Main{
 
                 if (c.equalsIgnoreCase("Yes")) {
 
-                    Services.reservation_product = new String[Services.reservation_product.length];
-                    Services.reservation_prod_quanti = new int[Services.reservation_prod_quanti.length];
-                    Services.reservation_price = new int[Services.reservation_price.length];
+//                    Services.reservation_product = new String[Services.reservation_product.length];
+//                    Services.reservation_prod_quanti = new int[Services.reservation_prod_quanti.length];
+//                    Services.reservation_price = new int[Services.reservation_price.length];
+//
+//                    if (Services.reservation_product[0] == null ) {
+//                        Services.reservation_product[0] = "0";
+//
+//                        if(Services.reservation_prod_quanti[0] == 0) {
+//                            Services.reservation_prod_quanti[0] = Integer.parseInt("0");
+//
+//                            if (Services.reservation_price[0] == 0) {
+//                                Services.reservation_price[0] = Integer.parseInt("0");
 
-                    if (Services.reservation_product[0] == null ) {
+
+                                //Thread.sleep(2000);
+                    for (String v : Services.reservation_product){
+                        System.out.println(v);
+                    }
+                    System.out.println("After clearing an array");
+                    Arrays.fill(Services.reservation_product , null);
+                    Arrays.fill(Services.reservation_price, 0);
+                    Arrays.fill(Services.reservation_prod_quanti, 0);
+
+                    if(Services.reservation_product[0] ==null){
                         Services.reservation_product[0] = "0";
-
-                        if(Services.reservation_prod_quanti[0] == 0) {
-                            Services.reservation_prod_quanti[0] = Integer.parseInt("0");
-
-                            if (Services.reservation_price[0] == 0) {
-                                Services.reservation_price[0] = Integer.parseInt("0");
-
-
-                                Thread.sleep(2000);
+                    }
                                 System.out.println();
                                 System.out.println("You have now " + Services.reservation_product[0] + " reserve.");
 
@@ -99,9 +117,9 @@ public class Account extends Main{
                                 System.out.println();
 
 
-                            }
-                        }
-                    }
+                           // }
+                        //}
+                    //}
 
                 } else if (c.equalsIgnoreCase("No")) {
                     System.out.println("Your reserve iPhone products are: ");
@@ -134,7 +152,7 @@ public class Account extends Main{
 
                 if ((CO.equalsIgnoreCase("Cash"))) {
                     System.out.println();
-                    System.out.println("Do you want now to Place Order? Y\"N ");
+                    System.out.print("Do you want now to Place Order? Y\"N ");
                     String cash = Services.input.nextLine();
 
                     int sum = 0;
@@ -142,6 +160,7 @@ public class Account extends Main{
                         Thread.sleep(1500);
                         System.out.println("The payment method on this transaction is Cash on Delivery.");
                         Thread.sleep(2000);
+                        System.out.println();
                         System.out.println("Processing reservation...");
                         Thread.sleep(4500);
 
@@ -150,14 +169,20 @@ public class Account extends Main{
                             Services.formattedPrice = Services.dF.format(sum);
                         }
                         Thread.sleep(2000);
+                        System.out.println();
                         System.out.println("The reservation has processed.");
                         Thread.sleep(2000);
+                        System.out.println();
                         System.out.println("Please prepare an exact amount of " + "P" + Services.formattedPrice + "." +
                                 "Photo proof of delivery is required");
                         Thread.sleep(2000);
+                        System.out.println();
                         System.out.println("Thank you for reserving and buying an apple product/s to our store. \nWe hope you can reserve again to us in the future");
                         Thread.sleep(1500);
+                        System.out.println();
                         System.out.println("Thanks and Be Safe!");
+
+                        paying = false;
 
                     } else if (cash.equalsIgnoreCase("N")) {
                         running = true;

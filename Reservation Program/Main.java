@@ -102,8 +102,9 @@ public class Main {
                     System.out.println();
                     System.out.println("-----Apple Product Categories-----");
                     for (String p : Products.getCategories()) {
-                        System.out.println("|| " + p + "");
-                    }
+                        System.out.println("==========================");
+                        System.out.println("||     " + p + "     ");
+                    }System.out.println("==========================");
                     Scanner u = new Scanner(System.in);
                     System.out.println();
                     System.out.print("Category: ");
@@ -125,18 +126,21 @@ public class Main {
             }  else if (user.equals("2")) {
                     Account.checkInfo();
 
-                    System.out.println("Press enter to go back in the dashboard");
-                    inputs.nextLine();
+//                    System.out.println("Press enter to go back in the dashboard");
+//                    inputs.nextLine();
 
 
             } else if (user.equals("3")) {
                     acc.Cancellation();
 
-                    System.out.println("Press enter to go back in the dashboard");
-                    inputs.nextLine();
+//                    System.out.println("Press enter to go back in the dashboard");
+//                    inputs.nextLine();
+                running = false;
 
             } else if (user.equals("4")) {
                     acc.Pay();
+                    running = false;
+                    break;
 
             } else {
                     System.out.println("Please input correct correct number from 1-4 and 0 if you want to exit the program");
